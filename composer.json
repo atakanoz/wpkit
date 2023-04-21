@@ -1,6 +1,6 @@
 {
 	"name": "atakanoz/wpkit",
-	"type": "composer-plugin",
+	"type": "library",
 	"description": "Adds Laravel-like functionalities to WordPress themes and plugins.",
 	"autoload": {
 		"psr-4": {
