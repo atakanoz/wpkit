@@ -191,14 +191,9 @@ class Kit {
 		 *
 		 * @since 1.0.0
 		 */
-		require get_template_directory() . '/includes/performance.php';
-		require get_template_directory() . '/includes/security.php';
-		require get_template_directory() . '/includes/actions.php';
-		require get_template_directory() . '/includes/filters.php';
+		foreach (glob(get_template_directory() . '/includes/**/*.php') as $filename) {
+    	require $filename;
+		}
 	}
 
 }
-
-
-require_once get_template_directory() . '/includes/core/setup.php';
-require_once get_template_directory() . '/includes/core/helpers.php';
