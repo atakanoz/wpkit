@@ -112,7 +112,24 @@ class Kit {
 	}
 
 	public function run() {
+		/**
+		 * Include Theme's setup file.
+		 * This particular file contains configuration for the themes.
+		 */
 		require get_template_directory() . '/includes/setup.php';
+
+		/**
+		 * Initiate a new Setup.
+		 */
+		$the_setup = new Setup();
+
+		/**
+		 * Make Setup.
+		 */
+		\add_action( 'widgets_init', array( $the_setup, 'make_sidebars' ) );
+		\add_action( 'wp_enqueue_scripts', array( $the_setup, 'styles' ) );
+		\add_action( 'wp_enqueue_scripts', array( $the_setup, 'scripts' ) );
+		\add_action( 'after_setup_theme', array( $the_setup, 'make_nav_menus' ) );
 	}
 
 	/**
