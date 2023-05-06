@@ -126,10 +126,10 @@ class Setup extends Kit {
 
 $the_setup = new Setup();
 
-add_action( 'widgets_init', array( $the_setup, 'make_sidebars' ) );
+\add_action( 'widgets_init', array( $the_setup, 'make_sidebars' ) );
 
-add_action( 'wp_enqueue_scripts', array( $the_setup, 'styles' ) );
+\add_action( 'wp_enqueue_scripts', array( $the_setup, 'styles' ) );
 
-add_action( 'wp_enqueue_scripts', array( $the_setup, 'scripts' ) );
+\add_action( 'wp_enqueue_scripts', array( $the_setup, 'scripts' ) );
 
-add_action( 'after_setup_theme', array( $the_setup, 'make_nav_menus' ) );
+\add_action( 'after_setup_theme', array( $the_setup, 'make_nav_menus' ) );
