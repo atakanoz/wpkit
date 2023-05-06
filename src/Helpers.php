@@ -118,9 +118,15 @@ class Helpers extends Kit {
 	 * @since 1.0.0
 	 * @return void
 	 */
-	public static function get_image( $image, $alt = '', $class = 'x-image' ) {
+	public static function get_image( $image, $alt = '', $class = 'x-image', $type = 'tag' ) {
 
-		echo '<img class="' . esc_attr( $class ) . ' lazyload" src="' . esc_attr( self::$image_dir ) . esc_attr( $image ) . '" alt="' . esc_attr( $alt ) . '">';
+		if($type === 'tag') {
+			echo '<img class="' . esc_attr( $class ) . ' lazyload" src="' . esc_attr( self::$image_dir ) . esc_attr( $image ) . '" alt="' . esc_attr( $alt ) . '">';
+		}
+
+		if($type === 'url') {
+			return esc_attr( self::$image_dir ) . esc_attr( $image );
+		}
 
 	}
 }

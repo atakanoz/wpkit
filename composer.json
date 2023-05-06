@@ -1,7 +1,8 @@
 {
 	"name": "atakanoz/wpkit",
 	"type": "library",
-	"description": "Adds Laravel-like functionalities to WordPress themes and plugins.",
+	"description": "Adds laravel-like functionalities to WordPress themes and plugins.",
+	"license": "MIT",
 	"autoload": {
 		"psr-4": {
 			"Theme\\": "src/"

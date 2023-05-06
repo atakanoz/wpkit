@@ -161,9 +161,9 @@ class Kit {
 	 * @param  mixed $class
 	 * @return void
 	 */
-	public static function image( $image, $alt = '', $class = 'x-image' ) {
+	public static function image( $image, $alt = '', $class = 'x-image', $type = 'tag' ) {
 
-		Helpers::get_image( $image, $alt, $class );
+		Helpers::get_image( $image, $alt, $class, $type );
 
 	}
 
