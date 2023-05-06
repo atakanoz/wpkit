@@ -50,22 +50,6 @@ class Setup extends Kit {
 	}
 
 	/**
-	 * Initialize Composer.
-	 *
-	 * @since 1.0.0
-	 * @return void
-	 */
-	public function init_composer() {
-
-		if ( Kit::$composer === true && file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
-
-			require_once get_template_directory() . '/vendor/autoload.php';
-
-		}
-
-	}
-
-	/**
 	 * Initialize Carbon Fields.
 	 *
 	 * @since 1.0.0

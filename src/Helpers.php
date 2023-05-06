@@ -51,7 +51,7 @@ class Helpers extends Kit {
 	 */
 	public static function get_layout( $layout_name, $layout_content, $layout_args = array() ) {
 
-		require get_template_directory() . "/views/layouts/$layout_name.php";
+		require get_template_directory() . "/resources/views/layouts/$layout_name.php";
 
 	}
 
@@ -87,7 +87,7 @@ class Helpers extends Kit {
 	 */
 	public static function get_template( $template, $args = array() ) {
 
-		return get_template_part( $template, '', $args );
+		return get_template_part( 'resources/views/' . $template, '', $args );
 
 	}
 

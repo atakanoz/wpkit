@@ -16,7 +16,7 @@ class Kit {
 	 *
 	 * @var string $version.
 	 */
-	public static $version = '1.0.0';
+	public static $version;
 
 	/**
 	 * Icon directory.
@@ -75,14 +75,44 @@ class Kit {
 	public static $menus = array();
 
 	/**
-	 * Composer.
+	 * Include Files.
 	 *
 	 * @var string $composer.
 	 */
-	public static $composer;
+	protected $include_files;
 
-	public static function boot() {
-		return new self();
+	/**
+	 * Instance
+	 *
+	 * @since 1.0.0
+	 * @access private
+	 * @static
+	 * @var \Noma\Plugin The single instance of the class.
+	 */
+	private static $_instance = null;
+
+	/**
+	 * Instance
+	 *
+	 * Ensures only one instance of the class is loaded or can be loaded.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 * @return \Noma\Plugin An instance of the class.
+	 */
+	public static function instance() {
+
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+
+		return self::$_instance->run();
+
+	}
+
+	public function run() {
+		require get_template_directory() . '/includes/setup.php';
 	}
 
 	/**
@@ -183,7 +213,6 @@ class Kit {
 		self::$sidebars      = $init['sidebars'];
 		self::$menus         = $init['menus'];
 		self::$jquery        = $init['jquery_support'] ? array( 'jquery' ) : array();
-		self::$composer      = $init['load_composer'];
 		self::$custom_fields = $init['custom_fields'] ? $init['custom_fields'] : 'none';
 
 		/**
@@ -191,8 +220,8 @@ class Kit {
 		 *
 		 * @since 1.0.0
 		 */
-		foreach (glob(get_template_directory() . '/includes/**/*.php') as $filename) {
-    	require $filename;
+		foreach ( $init['include_files'] as $filename ) {
+			require get_template_directory() . '/includes/' . $filename;
 		}
 	}
 
