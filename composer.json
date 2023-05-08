@@ -10,7 +10,8 @@
 		"files": [
 			"src/app.php",
 			"src/helpers.php",
-			"src/setup.php"
+			"src/setup.php",
+			"src/security.php"
 		]
 	},
 	"require": {}
