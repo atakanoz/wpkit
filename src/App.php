@@ -121,15 +121,16 @@ class Kit {
 		/**
 		 * Initiate a new Setup.
 		 */
-		$the_setup = new Setup();
+		$setup_module    = new Setup();
+		$security_module = new Security();
 
 		/**
 		 * Make Setup.
 		 */
-		\add_action( 'widgets_init', array( $the_setup, 'make_sidebars' ) );
-		\add_action( 'wp_enqueue_scripts', array( $the_setup, 'styles' ) );
-		\add_action( 'wp_enqueue_scripts', array( $the_setup, 'scripts' ) );
-		\add_action( 'after_setup_theme', array( $the_setup, 'make_nav_menus' ) );
+		\add_action( 'widgets_init', array( $setup_module, 'make_sidebars' ) );
+		\add_action( 'wp_enqueue_scripts', array( $setup_module, 'styles' ) );
+		\add_action( 'wp_enqueue_scripts', array( $setup_module, 'scripts' ) );
+		\add_action( 'after_setup_theme', array( $setup_module, 'make_nav_menus' ) );
 	}
 
 	/**
