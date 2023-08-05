@@ -1,5 +1,5 @@
 <?php
-namespace Theme;
+namespace Theme\Utilities;
 
 /**
  * Helpers Extender.
@@ -18,7 +18,7 @@ namespace Theme;
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @see        Kit, Kit::icon(), Kit::layout() etc...
  */
-class Helpers extends Kit {
+class Helpers {
 
 	/**
 	 * Get Icon.
@@ -30,10 +30,13 @@ class Helpers extends Kit {
 	 * @since 1.0.0
 	 * @return $icon
 	 */
-	public static function get_icon( $icon = '' ) {
+	public static function get_icon( $icon = '', $type = 'inline' ) {
 
-		echo file_get_contents( esc_attr( self::$icon_dir ) . esc_attr( $icon ) . '.svg' ); // phpcs:ignore
-
+		if ( $type === 'inline' ) {
+			echo file_get_contents( esc_attr( self::$icon_dir ) . esc_attr( $icon ) . '.svg' ); // phpcs:ignore
+		} else {
+			echo '<img src="' . esc_attr( self::$icon_dir ) . esc_attr( $icon ) . '.svg">'; // phpcs:ignore
+		}
 	}
 
 	/**
@@ -51,7 +54,7 @@ class Helpers extends Kit {
 	 */
 	public static function get_layout( $layout_name, $layout_content, $layout_args = array() ) {
 
-		require get_template_directory() . "/resources/views/layouts/$layout_name.php";
+		require get_template_directory() . "/src/Theme/Layouts/Static/$layout_name.php";
 
 	}
 
@@ -85,9 +88,9 @@ class Helpers extends Kit {
 	 * @since  1.0.0
 	 * @return $template.
 	 */
-	public static function get_template( $template, $args = array() ) {
+	public static function get_component( $type, $template, $args = array() ) {
 
-		return get_template_part( 'resources/views/' . $template, '', $args );
+		return get_template_part( 'src/Theme/' . $type . '/Static/components/' . $template, '', $args );
 
 	}
 
@@ -118,13 +121,13 @@ class Helpers extends Kit {
 	 * @since 1.0.0
 	 * @return void
 	 */
-	public static function get_image( $image, $alt = '', $class = 'x-image', $type = 'tag' ) {
+	public static function get_image( $image, $alt = '', $class = '', $type = 'tag' ) {
 
-		if($type === 'tag') {
+		if ( $type === 'tag' ) {
 			echo '<img class="' . esc_attr( $class ) . ' lazyload" src="' . esc_attr( self::$image_dir ) . esc_attr( $image ) . '" alt="' . esc_attr( $alt ) . '">';
 		}
 
-		if($type === 'url') {
+		if ( $type === 'url' ) {
 			return esc_attr( self::$image_dir ) . esc_attr( $image );
 		}
 
